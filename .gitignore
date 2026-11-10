@@ -1,0 +1,29 @@
+# ESP-IDF build output (large, machine specific)
+build/
+managed_components/
+dependencies.lock
+sdkconfig.old
+
+# Logs from build / flash / serial QA sessions
+*.log
+*.log.*
+*.csv.tmp
+
+# Binary artifacts
+*.bin
+*.elf
+*.map
+*.uf2
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Editor / OS
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db

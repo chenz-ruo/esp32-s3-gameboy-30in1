@@ -1,0 +1,27 @@
+CONFIG_IDF_TARGET="esp32s3"
+
+# 16 MB flash, 8 MB octal PSRAM (verified from the boot log of this board)
+CONFIG_ESPTOOLPY_FLASHSIZE_16MB=y
+CONFIG_ESPTOOLPY_FLASHMODE_DIO=y
+CONFIG_ESPTOOLPY_FLASHFREQ_80M=y
+CONFIG_SPIRAM=y
+CONFIG_SPIRAM_MODE_OCT=y
+CONFIG_SPIRAM_SPEED_80M=y
+CONFIG_SPIRAM_USE_MALLOC=y
+
+CONFIG_PARTITION_TABLE_CUSTOM=y
+CONFIG_PARTITION_TABLE_CUSTOM_FILENAME="partitions.csv"
+
+# console on UART0 (CH343 bridge, GPIO43/44).  Keep 115200: confgen resets
+# other values back to 115200 anyway, and the RLE screenshot of a 240x320
+# frame is only a few KB at this rate.  Flash speed is independent (-b 921600).
+CONFIG_ESP_CONSOLE_UART_DEFAULT=y
+CONFIG_ESP_CONSOLE_UART_BAUDRATE=115200
+
+# vendor/es8311.h still includes the legacy driver/i2c.h; IDF 6.x marks it
+# deprecated and the build uses -Werror, so suppress that warning.
+CONFIG_I2C_SUPPRESS_DEPRECATE_WARN=y
+
+CONFIG_FREERTOS_HZ=1000
+CONFIG_COMPILER_OPTIMIZATION_PERF=y
+CONFIG_ESP_MAIN_TASK_STACK_SIZE=8192
