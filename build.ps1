@@ -22,6 +22,9 @@ if (-not $env:IDF_PYTHON_ENV_PATH) { $env:IDF_PYTHON_ENV_PATH = "C:\Espressif\to
 # idf_component_manager compares this with 6.0.1; without it idf.py throws
 # TypeError: expected string or bytes-like object, got 'NoneType'.
 if (-not $env:ESP_IDF_VERSION)     { $env:ESP_IDF_VERSION = "6.1.0" }
+# Normally exported by export.bat.  Without it CMake warns "Error while
+# generating esp_rom gdbinit" (the build itself still succeeds).
+if (-not $env:ESP_ROM_ELF_DIR)     { $env:ESP_ROM_ELF_DIR = "C:\Espressif\tools\esp-rom-elfs\20241011" }
 
 $toolPaths = @(
     "C:\Espressif\tools\xtensa-esp-elf\esp-15.2.0_20251204\xtensa-esp-elf\bin",

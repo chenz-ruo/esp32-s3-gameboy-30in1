@@ -34,14 +34,16 @@ powershell -ExecutionPolicy Bypass -File .\build.ps1 build
 ```
 
 脚本做三件事：设置 `IDF_PATH` / `IDF_TOOLS_PATH` / `IDF_PYTHON_ENV_PATH` /
-`ESP_IDF_VERSION`、把 xtensa / cmake / ninja / ccache / venv 加进 PATH、
-调用 `idf.py -C <脚本所在目录>`。这些变量**如果已在环境里设置就不会被覆盖**，
+`ESP_IDF_VERSION` / `ESP_ROM_ELF_DIR`、把 xtensa / cmake / ninja / ccache / venv
+加进 PATH、调用 `idf.py -C <脚本所在目录>`。这些变量**如果已在环境里设置就不会被覆盖**，
 换机器直接设环境变量即可，不用改脚本；项目路径取 `$PSScriptRoot`，
 clone 到任意目录都能用。
 
 > `ESP_IDF_VERSION` 不能省。`idf_component_manager` 会拿它和 `6.0.1` 做版本比较，
 > 缺失时 `idf.py` 会在加载阶段直接抛
 > `TypeError: expected string or bytes-like object, got 'NoneType'`。
+> `ESP_ROM_ELF_DIR` 指向 `C:\Espressif\tools\esp-rom-elfs\20241011`，缺了会在
+> CMake 阶段报 `Error while generating esp_rom gdbinit`（不影响出固件，但会少了调试符号脚本）。
 
 板卡厂商的 EIM 激活脚本因为缺可选的 `riscv32-esp-elf-gdb` 组件会中途退出，
 所以这里绕开它直接调 `idf.py`。

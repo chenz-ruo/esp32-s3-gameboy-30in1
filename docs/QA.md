@@ -19,6 +19,11 @@ panic lines: none
 speaker up, volume 80
 ```
 
+整理仓库后另做了一次完整编译验证（`idf.py build`，ESP-IDF v6.1 / xtensa
+`esp-15.2.0_20251204`）：`BUILD_EXIT=0`，生成 `box1play.bin` 0x86E60（约 552 KB），
+app 分区 0x300000 剩余 82%，无编译错误。构建脚本因此补齐了
+`ESP_IDF_VERSION` 与 `ESP_ROM_ELF_DIR` 两个环境变量。
+
 ## 2. 逐类结论
 
 | 类别 | 数量 | 结论 |

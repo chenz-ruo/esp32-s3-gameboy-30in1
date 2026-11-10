@@ -76,7 +76,7 @@ cd <仓库根目录>
 `powershell -ExecutionPolicy Bypass -File .\build.ps1 build`。
 
 `build.ps1` 只是设好 `IDF_PATH` / `IDF_TOOLS_PATH` / `IDF_PYTHON_ENV_PATH` /
-`ESP_IDF_VERSION`、把工具链加进 PATH 后调用 `idf.py`，项目路径取脚本所在目录；
+`ESP_IDF_VERSION` / `ESP_ROM_ELF_DIR`、把工具链加进 PATH 后调用 `idf.py`，项目路径取脚本所在目录；
 换机器用环境变量覆盖这几个值即可。也可以直接用标准命令：
 
 ```bash
